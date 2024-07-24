@@ -1,0 +1,43 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}profile{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/profilestyle.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="head"></div>
+    <a href="{% url 'blog:createpost' %}" class="create-btn">ایجاد پست</a>
+    <form method="post" action="{% url 'blog:logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">خروج از حساب</button>
+    </form>
+    <form method="post" action="{% url 'blog:password-change' %}">
+        {% csrf_token %}
+        <button type="submit" class="change-pass-btn">تغییر پسورد</button>
+    </form>
+    <form method="post" action="{% url 'blog:edit_profile' %}">
+        {% csrf_token %}
+        <button type="submit" class="edit-profile-btn">ادیت پروفایل</button>
+    </form>
+    <h4><img src="{{ profile_img }}" class="res profile-img"> <span>{{ author }}</span></h4>
+    <table>
+        {% for post in posts %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td class="image-wrapper"><img src="{{ post.images.first.image_file.url }}" class="res"></td>
+                <td>{{ post.title }}</td>
+                <td class="see-btn"><a href="{{ post.get_absolute_url }}">دیدن</a></td>
+                <td class="edit-btn"><a href="{% url 'blog:edit_post' post.id %}">ویرایش</a></td>
+                <td><a href="{% url 'blog:delete_post' post.id %}" type="button" class="delbtn" >حذف</a></td>
+            </tr>
+        {% empty %}
+            <h3>پستی وجود ندارد</h3>
+        {% endfor %}
+        
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}delete post{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/delete-post-style.css' %}">
+{% endblock %}
+{% block content %}
+    <form method="post" class="del-form">
+        {% csrf_token %}
+        <p> آیا از حذف پست <span> "{{ post.title }}" </span>مطمئن هستید ؟ </p>
+        <div class="btn-wrapper">
+            <a href="{% url 'blog:profile' %}">لغو</a>
+            <button type="submit">تایید</button>
+        </div>
+
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>    <br>
+    <br>
+    <br>
+    <br>
+
+{% endblock %}

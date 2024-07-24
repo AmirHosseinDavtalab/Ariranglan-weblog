@@ -1,0 +1,35 @@
+.title{
+    text-align: center;
+    border: 1px dashed;
+    padding: 20px;
+    margin: 40px auto;
+    width: 85%;
+}
+.search-section{
+    background-color: aliceblue;
+    padding: 35px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 72%;
+    margin: 10px auto;
+    border-radius: 15px;
+    gap: 15px;
+}
+.search-not-found{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translatex(-50%);
+    background-color: cadetblue;
+    padding: 45px 200px;
+    border-radius: 15px;
+    color: aliceblue;
+    font-size: 20px;
+}
+.search-section a{
+    text-decoration: none;
+    color: blue;
+    font-size: 21px;
+}

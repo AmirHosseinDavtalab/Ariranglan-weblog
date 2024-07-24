@@ -1,0 +1,76 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load jformat %}
+{% load blog_tags %}
+{% block title %}post detail{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/comment-sectionstyle.css' %}">
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row post_container">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for img in post.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ img.image_file.url }}" class="d-block w-100 detail-post-image res" alt="{{ img.title }}">
+                        </div>
+                    {% endfor %}
+                 </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            <h4 class="title_detail">{{ post.title }}</h4>
+            <h5>نویسنده :  {{ post.author }}</h5>
+            <p>{{ post.description | markdown }}</p>
+            <hr>
+            <span>{{ post.publish | jformat:"%Y/%m/%d - %H:%M" }}</span>
+        </div>
+        <div class="comment-section">
+            <form method="post" action="{% url 'blog:post_comment' post.id %}">
+            {% csrf_token %}
+                <div class="inputbox">
+                  <label for="nameid">اسم : </label>
+                  <input id="nameid" type="text" name="name" required class="names"
+                  {% if form.name.value %}value="{{ form.name.value }}" {% endif %}>
+                    {{ form.name.errors }}
+                </div>
+                <div class="inputbox2">
+                  <label for="textarea">کامنت : </label>
+                      <textarea id="textarea" name="text"  required class="texts-c">{% if form.text.value %}{{ form.text.value }}{% endif %}</textarea>
+                    {{ form.text.errors }}
+                </div>
+            <input type="submit" value="افزودن کامنت">
+            </form>
+            <div class="num-comment">
+                {% with comments.count as cm_count %}
+                <span>تعداد کامنت : </span>{{ cm_count }}
+                {% endwith %}
+            </div>
+            <br>
+            <div class="comment-container">
+                {% for cm in comments %}
+                    <div class="comment">
+                        <p class="comment-name">{{ cm.name }}</p>
+                        <br>
+                        {{ cm.text|linebreaks }}
+                    </div>
+                    {% empty %}
+                    <p>کامنتی وجود ندارد</p>
+                {% endfor %}
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

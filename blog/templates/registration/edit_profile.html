@@ -1,0 +1,56 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}edit profile{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/edit-post-style.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="post-section">
+        <form method="post" enctype="multipart/form-data" class="post-form">
+        {% csrf_token %}
+            <h3>ادیت پروفایل</h3>
+            <div class="inputGroup">
+              <input id="title" type="text" name="first_name" class="title_input"
+              {% if user_form.first_name.value %}value="{{ user_form.first_name.value }}" {% endif %}>
+              <label for="title">اسم : </label>
+                {{ user_form.first_name.errors }}
+            </div>
+            <div class="inputGroup">
+              <input id="title" type="text" name="last_name" class="title_input"
+              {% if user_form.last_name.value %}value="{{ user_form.last_name.value }}" {% endif %}>
+              <label for="title">نام خانوادگی : </label>
+                {{ user_form.last_name.errors }}
+            </div>
+            <div class="inputGroup">
+              <input id="title" type="email" name="email" class="title_input"
+              {% if user_form.email.value %}value="{{ user_form.email.value }}" {% endif %}>
+              <label for="title">ایمیل :</label>
+                {{ user_form.email.errors }}
+            </div>
+            <div class="inputGroup">
+              <input id="title" type="text" name="job"  class="title_input"
+              {% if profile_form.job.value %}value="{{ profile_form.job.value }}" {% endif %}>
+              <label for="title">شغل : </label>
+                {{ profile_form.job.errors }}
+            </div>
+            <div class="inputGroup">
+                <textarea id="textarea" name="bio" placeholder="بیو : " class="description_input">{% if profile_form.bio.value %}{{ profile_form.bio.value }}{% endif %}</textarea>
+                {{ profile_form.bio.errors }}
+            </div>
+            <div class="inputGroup">
+              <input id="time" type="text" placeholder="1380-06-01" dir="ltr" name="date_of_birth" class="time_input"
+                {% if profile_form.date_of_birth.value %}value="{{ profile_form.date_of_birth.value }}" {% endif %}>
+                <label for="time">تاریخ تولد : </label>
+                {{ profile_form.date_of_birth.errors }}
+            </div>
+            <div class="input-box">
+              <label for="pic1">عکس پروفایل : </label>
+              <input id="pic1" type="file" name="photo" class="image_input">
+              <button type="button" class="submit" onclick="document.getElementById('pic1').click();">افزودن عکس</button>
+              <span id="file-name1" class="file-name" style="margin-right: 10px"></span>
+              {{ profile_form.photo.errors }}
+            </div>
+        <input type="submit" value="اعمال تغییرات" class="confirm">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,177 @@
+.post-form {
+    border-radius: 50px;
+    background: #efeeee;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+    width: 80%;
+    margin: 50px auto;
+    padding: 50px;
+}
+
+.inputGroup {
+    margin: 1em 0 1em 0;
+    max-width: 190px;
+    position: relative;
+}
+
+.inputGroup input {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 20rem;
+}
+
+.inputGroup label {
+    font-size: 80%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    padding: 0.8em;
+    margin-left: 0.5em;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: rgb(100, 100, 100);
+    transform: translateY(-50%);
+}
+
+.inputGroup :is(input:focus, input:valid) ~ label {
+    transform: translateY(-140%) scale(.9) !important;
+    padding: 0.4em;
+    margin-right: 10px;
+    background-color: #efeeee;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+textarea {
+    min-height: 54px;
+    font-size: 14px;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 40rem;
+}
+
+.inputGroup :is(input:focus, input:valid, textarea:focus, textarea:valid) {
+    border-color: rgb(150, 150, 200);
+}
+
+.input-box label {
+    color: rgb(100, 100, 100);
+}
+
+.input-box {
+    margin: 30px 0;
+}
+
+input[type='file'] {
+    display: none;
+}
+
+.submit {
+    width: 9em;
+    height: 3em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5,
+                -6px -6px 12px #ffffff;
+}
+
+.submit::before {
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #1da5ef 0%, #9242de 100%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+.submit:hover::before {
+    width: 9em;
+}
+
+.submit:hover {
+    color: #e9ecf3;
+}
+
+.confirm {
+    margin: 0 45%;
+}
+
+.confirm {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #725AC1;
+    background: transparent;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    border: 2px solid #725AC1;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 0 #725AC1;
+}
+
+.confirm:hover {
+    color: white;
+    box-shadow: inset 0 -100px 0 0 #725AC1;
+}
+
+.confirm:active {
+    transform: scale(0.9);
+}
+
+h3 {
+    text-align: center;
+    border-bottom: 1px dashed gray;
+    padding-bottom: 23px;
+    margin-bottom: 55px;
+    color: #555555;
+}
+
+.file-name {
+    margin-left: 10px;
+    font-style: italic;
+    color: #555555;
+}
+.inputbox1 select{
+    width: 100px;
+    height: 38px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.inputbox1 option{
+    cursor: pointer !important;
+}
+.inputbox{
+    margin: 20px 0;
+}
+.inputbox label{
+    color: rgb(100, 100, 100);
+}
+.inputbox input{
+    border-radius: 10px;
+    border: none;
+    height: 35px;
+    padding: 10px;
+}

@@ -1,0 +1,66 @@
+{% extends 'parent/base.html' %}
+{% block title %}post list{% endblock %}
+{% load blog_tags %}
+{% load static %}
+{% load jformat %}
+{% block content %}
+    <div class="container d-flex flex-row">
+        <div class="row d-flex flex-column align-items-center justify-content-start center-content px-5">
+            {% if category %}
+                <h4 class="text_head"> لیست پست های {{ category }} </h4>
+            {% else %}
+                <h4 class="text_head">لیست پست ها</h4>
+            {% endif %}
+            {% for post in posts %}
+                <div class="post col-7">
+                    <a  href="{{ post.get_absolute_url }}" class="post-content">
+                    <img src="{{ post.images.first.image_file.url }}" class="list-post-image res" alt="{{ post.images.first.title }}">
+                    <div class="content-list">
+                        {% if post.author.profile.photo %}
+                            <a href="{% url 'blog:profile_detail' username=post.author.username %}" class="title_post mb-2"><img src="{{ post.author.profile.photo.url }}">{{ post.author }}</a>
+                        {% else %}
+                            <a href="{% url 'blog:profile_detail' username=post.author.username %}" class="title_post mb-2"><img src="{% static 'images/profile.png' %}">{{ post.author }}</a>
+                        {% endif %}
+                        
+                        <span >{{ post.publish | jformat:"%Y/%m/%d - %H:%M" }}</span>
+                    
+                        <p>{{ post.description | truncatewords:10 }}</p>
+                        
+                        
+                        <a class="btn-confirm" href="{{ post.get_absolute_url }}">بیشتر</a>
+                        
+                    </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <aside class="left-aside">
+            <div class="category">
+                <h4>دسته بندی</h4>
+                <a href="{% url 'blog:post_list_category' 'انیمه' %}">انیمه</a>
+                <a href="{% url 'blog:post_list_category' 'سریال' %}">سریال</a>
+                <a href="{% url 'blog:post_list_category' 'گردشگری' %}">گردشگری</a>
+                <a href="{% url 'blog:post_list_category' 'برنامه نویسی' %}">برنامه نویسی</a>
+                <a href="{% url 'blog:post_list_category' 'آشپزی' %}">آشپزی</a>
+                <a href="{% url 'blog:post_list_category' 'مدلینگ' %}">مدلینگ</a>
+                <a href="{% url 'blog:post_list_category' 'طراحی' %}">طراحی</a>
+                <a href="{% url 'blog:post_list_category' 'متفرقه' %}">متفرقه</a>
+            </div>
+            <div class="popular-posts">
+                <h4>محبوب ترین پست ها</h4>
+                {% most_popular_posts as mpp %}
+                {% for post in mpp %}
+                    <a href="{{ post.get_absolute_url }}" class="popular-post"><img src="{{ post.images.first.image_file.url }}" class="res">{{ post.title }}</a>
+                    <br>
+                {% endfor %}
+            </div>
+        </aside>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% include 'partials/pagination.html' with page=posts %}
+{#    {% include 'partials/pagination.html' with page=page_obj %}#}
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/login-style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+{% endblock %}
+{% block content %}
+<div class="form-container">
+    <p class="title">ورود به حساب</p>
+    <form class="form" method="post">
+        {% csrf_token %}
+        <input name="username" type="text" class="input" placeholder="نام کاربری">
+        {{ form.username.errors }}
+        <input name="password" type="password" class="input" placeholder="رمز عبور">
+        {{ form.password.errors }}
+        {% if form.errors %}
+            <div class="error-wrapper">
+                <span class="error">{{ form.non_field_errors }}</span>
+            </div>
+        {% endif %}
+        <p class="page-link">
+            <a class="page-link-label" href="{% url 'blog:password-reset' %}">فراموشی گذرواژه</a>
+        </p>
+        <button class="form-btn" type="submit">تایید</button>
+    </form>
+    <p class="sign-up-label">
+        هنوز اکانت نداری؟ <a href="{% url 'blog:register' %}" class="sign-up-link"> ساختن حساب </a>
+    </p>
+    
+</div>
+{% endblock %}

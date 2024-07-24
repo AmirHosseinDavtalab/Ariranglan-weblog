@@ -1,0 +1,34 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}ثبت نام{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/login-style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+{% endblock %}
+{% block content %}
+<div class="form-container">
+    <p class="title">ثبت نام</p>
+    <form class="form" method="post">
+        {% csrf_token %}
+        <input name="username" type="text" class="input" placeholder="نام کاربری" autocomplete="off" required {% if form.username.value %}value="{{ form.username.value }}" {% endif %}>
+        {{ form.username.errors }}
+        <input name="first_name" type="text" class="input" placeholder="نام" required {% if form.first_name.value %}value="{{ form.first_name.value }}" {% endif %}>
+        {{ form.first_name.errors }}
+        <input name="last_name" type="text" class="input" placeholder="نام خانوادگی" required {% if form.last_name.value %}value="{{ form.last_name.value }}" {% endif %}>
+        {{ form.last_name.errors }}
+        <input name="email" type="email" class="input" placeholder="ایمیل" required {% if form.email.value %}value="{{ form.email.value }}" {% endif %}>
+        {{ form.email.errors }}
+        <input name="password" type="password" class="input" placeholder="رمز عبور" autocomplete="off" required {% if form.password.value %}value="{{ form.password.value }}" {% endif %}>
+        {{ form.password.errors }}
+        <input name="password2" type="password" class="input" placeholder="تکرار رمز عبور" required {% if form.password2.value %}value="{{ form.password2.value }}" {% endif %}>
+        {{ form.password2.errors }}
+        {% if form.non_field_errors %}
+            <span class="error">{{ form.non_field_errors }}</span>
+        {% endif %}
+        <button class="form-btn" type="submit">تایید</button>
+    </form>
+    <p class="sign-up-label">
+        اکانت داری؟ <a href="{% url 'blog:login' %}" class="sign-up-link"> ورود به حساب </a>
+    </p>
+</div>
+{% endblock %}

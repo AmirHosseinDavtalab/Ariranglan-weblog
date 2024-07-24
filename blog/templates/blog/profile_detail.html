@@ -1,0 +1,46 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load jformat %}
+{% block title %}پروفایل{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/profile_detail.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container d-flex justify-content-center">
+        <section class="profile_detail">
+            {% if profile.photo %}
+                <img src="{{ profile.photo.url }}" alt="Profile Image" class="profile-img">
+            {% else %}
+                <img src="{% static 'images/profile.png' %}" alt="Default Profile Image" class="profile-img">
+            {% endif %}
+            <h2>{{ user.username }}</h2>
+            <p><span>بیو:</span> {{ profile.bio }}</p>
+            <p><span>شغل:</span> {{ profile.job }}</p>
+            <p><span>تاریخ تولد:</span> {{ profile.date_of_birth | jformat:"%Y/%m/%d" }}</p>
+        </section>
+    </div>
+    <div class="container">
+        <div class="post-section">
+            <h3>POSTS</h3>
+            <section>
+                {% for post in posts %}
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="{{ post.images.first.image_file.url }}">
+                            </div>
+                            <div class="flip-card-back">
+                                <span>{{ post.title }}</span>
+                                <span>{{ post.created | jformat:"%Y/%m/%d - %H:%M"}}</span>
+                                <span><a href="{{ post.get_absolute_url }}">مشاهده</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <h3>پستی وجود ندارد</h3>
+                {% endfor %}
+            </section>
+        </div>
+    </div>
+    
+{% endblock %}

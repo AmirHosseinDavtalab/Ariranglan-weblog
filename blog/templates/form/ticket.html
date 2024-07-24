@@ -1,0 +1,70 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block head %}<link rel="stylesheet" href="{% static 'css/formstyle.css' %}" />{% endblock %}
+{% block title %}ticket form{% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+            <div class="form-value">
+                <div class="form-box">
+                      <form method="post">
+                          <h2>ارتباط با ما</h2>
+                          <div class="welcome">
+                              <p class="first-p">سلام!</p>
+                              <p>تیکت خود را با پر کردن فرم زیر ارسال کنید </p>
+                          </div>
+
+                          <div class="inputbox">
+                              <label for="nameid">اسم : </label>
+                              <input id="nameid" type="text" name="name" required class="names"
+                              {% if form.name.value %}value="{{ form.name.value }}" {% endif %}>
+                                {{ form.name.errors }}
+                          </div>
+                          <div class="inputbox">
+                              <label for="emailid">ایمیل : </label>
+                              <input id="emailid" type="email" name="email" required class="emails"
+                              {% if form.email.value %}value="{{ form.email.value }}" {% endif %}>
+                              {{ form.email.errors }}
+                          </div>
+                          <div class="inputbox">
+                              <label for="">شماره تلفن : </label>
+                              <input type="text" name="phone"  required class="phones"
+                              {% if form.phone.value %}value="{{ form.phone.value }}" {% endif %}>
+                                {{ form.phone.errors }}
+                          </div>
+                          <div class="inputbox inputbox1">
+                              <label for="sub">موضوع : </label>
+                              <select name="subject" id="sub" >
+                                  <option value="انتقاد" {% if form.subject.value == "انتقاد"%}selected{% endif %}>انتقاد</option>
+                                  <option value="پیشنهاد" {% if form.subject.value == "یشنهاد"%}selected{% endif %}>پیشنهاد</option>
+                                  <option value="گزارش" {% if form.subject.value == "گزارش"%}selected{% endif %}>گزارش</option>
+                              </select>
+                                {{ form.subject.errors }}
+                          </div>
+                          <div class="inputbox2">
+                              <label for="textarea">پیام : </label>
+                                  <textarea id="textarea" name="message"  required class="messages">{% if form.message.value %}{{ form.message.value }}{% endif %}</textarea>
+                                {{ form.message.errors }}
+                          </div>
+{#                          <div class="error-section">#}
+{#                            {% if form.errors %}#}
+{#                                {% for field in form %}#}
+{#                                    {% if field.errors %}#}
+{#                                        {% for error in field.errors %}#}
+{#                                           {{ error }}#}
+{#                                        {% endfor %}#}
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
+{#                            {% endif %}#}
+{#                          {% if form.non_field_errors %}#}
+{#                              {{ form.non_field_errors }}#}
+{#                          {% endif %}#}
+{#                          </div>#}
+                          <button>ثبت</button>
+
+                      </form>
+                </div>
+            </div>
+    </form>
+
+{% endblock %}

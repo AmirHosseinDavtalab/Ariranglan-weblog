@@ -1,0 +1,67 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}create post{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/edit-post-style.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="post-section">
+        <form method="post" enctype="multipart/form-data" class="post-form">
+        {% csrf_token %}
+            <h3>ادیت پست</h3>
+            <div class="inputGroup">
+              <input id="title" type="text" name="title" required class="title_input"
+              {% if form.title.value %}value="{{ form.title.value }}" {% endif %}>
+              <label for="title">موضوع : </label>
+                {{ form.title.errors }}
+            </div>
+            <div class="inputGroup">
+                <textarea id="textarea" name="description" placeholder="توضیحات : " required class="description_input">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+                {{ form.description.errors }}
+            </div>
+            <div class="inputGroup">
+              <input id="time" type="number" min="1" max="100" name="reading_time" required class="time_input"
+                {% if form.reading_time.value %}value="{{ form.reading_time.value }}" {% endif %}>
+                <label for="time">زمان مطالعه : </label>
+                {{ form.reading_time.errors }}
+            </div>
+            <div class="input-box">
+              <label for="pic1">عکس اول : </label>
+              <input id="pic1" type="file" name="image1" class="image_input">
+              <button type="button" class="submit" onclick="document.getElementById('pic1').click();">افزودن عکس</button>
+              <span id="file-name1" class="file-name" style="margin-right: 10px"></span>
+              {{ form.image1.errors }}
+            </div>
+            <div class="input-box">
+              <label for="pic2">عکس دوم : </label>
+              <input id="pic2" type="file" name="image2" class="image_input">
+              <button type="button" class="submit" onclick="document.getElementById('pic2').click();">افزودن عکس</button>
+              <span id="file-name2" class="file-name" style="margin-right: 10px"></span>
+              {{ form.image2.errors }}
+            </div>
+            <div class="inputbox1 inputbox">
+             <label for="sub">دسته بندی : </label>
+              <select name="category" id="sub" >
+                  <option value="انیمه" {% if form.subject.value == "انیمه"%}selected{% endif %}>انیمه</option>
+                  <option value="سریال" {% if form.subject.value == "سریال"%}selected{% endif %}>سریال</option>
+                  <option value="گردشگری" {% if form.subject.value == "گردشگری"%}selected{% endif %}>گردشگری</option>
+                  <option value="برنامه نویسی" {% if form.subject.value == "برنامه نویسی"%}selected{% endif %}>برنامه نویسی</option>
+                  <option value="آشپزی" {% if form.subject.value == "آشپزی"%}selected{% endif %}>آشپزی</option>
+                  <option value="مدلینگ" {% if form.subject.value == "مدلینگ"%}selected{% endif %}>مدلینگ</option>
+                  <option value="طراحی" {% if form.subject.value == "طراحی"%}selected{% endif %}>طراحی</option>
+                  <option value="متفرقه" {% if form.subject.value == "متفرقه"%}selected{% endif %}>متفرقه</option>
+              </select>
+                {{ form.subject.errors }}
+            </div>
+            <div class="img-container">
+                {% for img in post.images.all %}
+                    <div class="del-wrapper">
+                        <img src="{{ img.image_file.url }}">
+                        <a href="{% url 'blog:delete_image' img.id %}">حذف تصویر</a>
+                    </div>
+                {% endfor %}
+            </div>
+        <input type="submit" value="اعمال تغییرات" class="confirm">
+        </form>
+    </div>
+{% endblock %}

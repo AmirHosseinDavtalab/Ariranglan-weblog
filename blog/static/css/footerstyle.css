@@ -1,0 +1,86 @@
+footer{
+    height: 300px;
+    width: 100%;
+    background-color: #2a3554;
+    margin-top: 200px;
+    position: relative;
+    display: block;
+}
+footer::before{
+    content: "";
+    top: -169px;
+    position: absolute;
+    height: 170px;
+    width: 100%;
+    background-color: #2a3554;
+    clip-path: polygon(0% 51%, 0 100%, 116% 100%);
+}
+.content-footer{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.resturant{
+    grid-column: 1/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+.resturant .logo-sub-footer{
+    width: 150px;
+    margin-right: -47px;
+    
+}
+.resturant p{
+    font-size: 56px;
+    color: #ffffff;
+}
+.contact-us{
+    grid-column: 2/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #5858586b;
+    margin-top: 50px;
+    margin-left: 36px;
+}
+.contact-us .chef-footer{
+    position: absolute;
+    top: 15px;
+    left: 33px;
+    width: 300px;
+    opacity: .3;
+}
+.social-icons{
+    display: flex;
+    justify-content: start;
+    height: 100px;
+    align-items: center;
+    align-self: flex-start;
+    margin-right: 89px;
+}
+.social-icons i{
+    margin: 0 20px;
+    font-size: 25px;
+    color: #F5F7F8;
+    cursor: pointer;
+    transition: all .3s;
+}
+.social-icons i:hover{
+    color: #F4CE14;
+}
+.location{
+    margin-left: 328px;
+}
+.location p{
+    color: #888;
+    font-size: 18px;
+    line-height: 50px;
+}
+.location p i{
+    vertical-align: -2px;
+    margin-left: 10px;
+    color: #F4CE14;
+}

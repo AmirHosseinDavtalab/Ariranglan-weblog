@@ -1,0 +1,21 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}post search{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/searchstyle.css' %}">
+{% endblock %}
+{% block content %}
+    {% if query %}
+        <p class="title"> نتایج جستجو برای : {{ query }} </p>
+    {% endif %}
+    {% for post in results %}
+        <div class="search-section">
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            <p>{{ post.description }}</p>
+        </div>
+    {% empty %}
+        <span class="search-not-found">نتیجه ای یافت نشد !!</span>
+        <br><br><br><br><br><br><br><br><br><br>
+    {% endfor %}
+
+{% endblock %}

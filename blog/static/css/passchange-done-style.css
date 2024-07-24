@@ -1,0 +1,31 @@
+.content-wrapper{
+    margin: 100px auto;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #3cbde7;
+    padding: 50px 0;
+    border-radius: 16px;
+}
+.content-wrapper p{
+    border-bottom: 2px dashed #ffffff;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 21px;
+    color: #5c5c5c;
+}
+.content-wrapper a{
+    color: #f7f7f7;
+    border: 1px solid white;
+    padding: 7px 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    transition: .3s ease;
+}
+.content-wrapper a:hover{
+    color: #000000;
+    background-color: azure;
+}

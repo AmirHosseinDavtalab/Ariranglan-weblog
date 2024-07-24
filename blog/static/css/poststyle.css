@@ -1,0 +1,67 @@
+.comment-section{
+    padding: 40px;
+    box-shadow: 0 0 14px 10px #efefef;
+    border-radius: 30px;
+    background-color: #f3f3f3;
+    margin: 20px 0;
+}
+form{
+
+}
+#nameid{
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f5c9d0;
+    padding-right: 15px;
+    font-size: 15px;
+}
+.inputbox2{
+    margin: 20px 0;
+    display: flex;
+}
+#textarea{
+    width: 400px;
+    min-height: 100px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 16px;
+    padding-right: 15px;
+    font-size: 15px;
+    padding-top: 10px;
+}
+form input[type='submit']{
+    width: 15%;
+    float: left;
+    height: 40px;
+    border: none;
+    background-color: cadetblue;
+    border-radius: 21px;
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.num-comment{
+    margin-top: 90px;
+    border: 2px dashed;
+    padding: 10px;
+    border-radius: 14px;
+}
+.comment-name{
+    border-bottom: 1px solid #dbd9d98a;
+    padding-bottom: 20px;
+    color: #1c31c4;
+}
+.comment{
+    background-color: #6ed1f9;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.errorlist{
+    list-style: none;
+    color: red;
+    margin: 10px;
+}

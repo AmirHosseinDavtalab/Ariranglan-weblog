@@ -1,0 +1,20 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/index-style.css' %}" />
+{% endblock %}
+{% block title %}index{% endblock %}
+{% load blog_tags %}
+{% load jformat %}
+{% block content %}
+    <div class="container">
+        <div class="Header-wrapper">
+            <img src="{% static 'images/group-young-adult-friends-using-smartphones-subway.jpg' %}" class="Header-img res">
+            <div class="Header-content">
+                <h2>با آریرانگلند به دوستات نزدیک تر شو</h2>
+                <a href="{% url 'blog:post_list' %}" class="Header-btn">دیدن پست ها</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
